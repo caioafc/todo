@@ -10,46 +10,11 @@
           />
       </div>
     <scroll ref="scroll" id="list-body"> 
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
+        <Item v-for="(todo, index) in todos" :key="index"
+            :idColumn="todo.id"
+            :descriptionColumn="todo.description"
+            :statusColumn="todo.status"
+        />
     </scroll>
   </div>
 </template>
@@ -71,7 +36,8 @@
                     status: 'Status',
                     edit: 'Edit',
                     remove: 'Remove'
-                }
+                },
+                todos: this.$store.getters.getAllTodos
             }
         }
     }
