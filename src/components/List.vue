@@ -1,41 +1,99 @@
 <template>
   <div id="list">
-      <h1>Title</h1>
-      <div id="body">
-        <p>
-            teste
-        </p>
-        
-        
+      <div id="list-header">
+          <Item 
+            :idColumn="header.id"
+            :descriptionColumn="header.description"
+            :statusColumn="header.status"
+            :editColumn="header.edit"
+            :removeColumn="header.remove"
+          />
       </div>
-      <img src="../assets/add.svg" alt="add-button">
+    <scroll ref="scroll" id="list-body"> 
+        <Item />
+        <Item />
+        <Item />
+        <Item />
+        <Item />
+        <Item />
+        <Item />
+        <Item />
+        <Item />
+        <Item />
+        <Item />
+        <Item />
+        <Item />
+        <Item />
+        <Item />
+        <Item />
+        <Item />
+        <Item />
+        <Item />
+        <Item />
+        <Item />
+        <Item />
+        <Item />
+        <Item />
+        <Item />
+        <Item />
+        <Item />
+        <Item />
+        <Item />
+        <Item />
+        <Item />
+        <Item />
+        <Item />
+        <Item />
+        <Item />
+        <Item />
+        <Item />
+        <Item />
+        <Item />
+        <Item />
+    </scroll>
   </div>
 </template>
 
 <script>
-export default {
+    import Item from './Item.vue'
 
-}
+    export default {
+        name: 'List',
+        components: {
+            Item
+        },
+
+        data: function () {
+            return {
+                header: {
+                    id: 'ID',
+                    description: 'Description',
+                    status: 'Status',
+                    edit: 'Edit',
+                    remove: 'Remove'
+                }
+            }
+        }
+    }
 </script>
 
 <style>
     #list {
-        position: relative;
-        top: 30px;
-        display: flex;
+        margin-top: 80px;
+        height: 700px;
+        width: 1500px;
         flex-direction: column;
-        align-items: center;
-        height: 800px;
-        width: 350px;
         border-radius: 30px;
         background-color: #ffffff;
         border: 1px solid #dbd7d7
     }
-
-    #list img {
-        position: sticky;
-        top: 100vh;
-        left: 70vw;
-        padding: 20px;
+    #list-header {
+        border-bottom: 1px solid #dbd7d7;
+    }
+    #list-body {
+        margin-top: 10px
+    }
+    .ps {
+        height: 600px;
     }
 </style>
