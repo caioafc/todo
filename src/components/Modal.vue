@@ -16,7 +16,6 @@
       },
       addTodo() {
         if (this.todo.description && this.todo.status) {
-          this.todo.id = this.$store.getters.getAllTodos.length + 1
           this.$store.commit('addNewTodo', this.todo)
         }
         document.getElementById("form").reset();
@@ -51,7 +50,7 @@
                 <select v-model="todo.status" name="todoStatus" id="todoStatus">
                     <option value="Not Started">Not Started</option>
                     <option value="In Progress">In Progress</option>
-                    <option value="done">Done</option>
+                    <option value="Done">Done</option>
                 </select>
                 <button type="submit" name="button" @click="close">Add</button>
             </form>

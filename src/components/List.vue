@@ -14,6 +14,7 @@
             :idColumn="todo.id"
             :descriptionColumn="todo.description"
             :statusColumn="todo.status"
+            :editMode="todo.editMode"
         />
     </scroll>
   </div>
