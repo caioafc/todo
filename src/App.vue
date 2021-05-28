@@ -56,7 +56,7 @@
       }
     },
     created: function (){
-      this.$store.commit('setTodoList', data.default)
+      this.$store.dispatch('fetchTodos')
     }
   }
 </script>

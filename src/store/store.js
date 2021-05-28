@@ -1,5 +1,6 @@
 import Vuex from 'vuex'
 import Vue from 'vue'
+import { getAllTodos, deleteTodo, addNewTodo } from '../factory/requests'
 
 
 Vue.use(Vuex)
@@ -16,15 +17,18 @@ const store = new Vuex.Store({
             }
         },
         addNewTodo(context, todo) {
+            const todos = this.getters.getAllTodos
             const newTodo = {
-                id: this.getters.getAllTodos.length + 1,
+                id: todos.length ? parseInt(todos[todos.length-1].id) + 1 : 1,
                 description: todo.description,
                 status: todo.status,
                 editMode: false
             }
+            addNewTodo(newTodo)
             context.todos.push(newTodo)
         },
         removeTodo(context, todoId) {
+            deleteTodo(this.getters.getTodoById(todoId)._id)
             context.todos.splice(this.getters.getAllTodos.indexOf(this.getters.getTodoById(todoId)), 1);
         },
         editTodo(context, todoId) {
@@ -44,6 +48,16 @@ const store = new Vuex.Store({
         getTodoById(context) {
             return (id) => context.todos.find(todo => {return todo.id == id})
         },
+    },
+    actions: {
+        async fetchTodos() {
+            try {
+                const allTodos = await getAllTodos()
+                this.commit('setTodoList', allTodos)
+            } catch (e) {
+                console.log(e.message)
+            }
+        }
     }
   })
 
